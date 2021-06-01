@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-Change *data.json* file with the information of S3 bucket and key of image that should be analyzed, as sample below:
+Change `data.json` file with the information of S3 bucket and key of image that should be analyzed, as sample below:
 
 ```json
 {
@@ -290,7 +290,7 @@ Which should result in response similar to the following:
 ```
 
 If you prefer, you can access AWS Console in https://console.aws.amazon.com/lambda/ and test lambda directly in the testing tab.
-You should create an event with the same payload that you have in [data.json]
+You should create an event with the same payload that you have in [data.json](data.json)
 
 ### Undeployment
 
