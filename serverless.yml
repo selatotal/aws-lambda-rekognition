@@ -1,0 +1,33 @@
+service: aws-lambda-rekognition
+
+frameworkVersion: '2'
+
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  environment:
+    MAX_LABELS: 10
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action: 's3:Get*'
+          Resource: '*'
+        - Effect: 'Allow'
+          Action: 's3:ListBucket'
+          Resource: '*'
+        - Effect: 'Allow'
+          Action: 'rekognition:DetectLabels'
+          Resource: '*'
+        - Effect: 'Allow'
+          Action: 'sts:AssumeRole'
+          Resource: '*'
+
+functions:
+  imageAnalyze:
+    handler: handler.image_analyze
+
+plugins:
+  - serverless-python-requirements

@@ -1,0 +1,6 @@
+{
+    "body": {
+        "bucket":"your-bucket-name",
+        "image":"path/to/image-s3-key"
+    }
+}
