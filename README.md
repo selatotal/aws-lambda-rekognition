@@ -11,9 +11,10 @@ sudo npm install -g serverless
 
 You need to have an AWS account and correcty set the credentials, as showed in http://slss.io/aws-creds-setup
 
-After checkout repository, you should install serverless-python-requirements plugin, as below:
+After checkout repository, you should install serverless-python-requirements plugin and serverless-ignore, as below:
 ```
 serverless plugin install -n serverless-python-requirements
+npm install --save-dev serverless-ignore
 ```
 
 In order to execute locally, you need to install python dependencies, as below:

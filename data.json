@@ -1,6 +1,7 @@
 {
     "body": {
-        "bucket":"your-bucket-name",
-        "image":"path/to/image-s3-key"
+        "bucket":"ubisafe-dev-images",
+        "image":"ubisafe/images/command/3678369f-9921-4c62-83d9-86846de0be14/2021/06/01/124b001c84e540_1622573641_01025dad-b406-4cfc-bedf-3c5e21b3411f.jpg"
+
     }
 }
