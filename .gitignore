@@ -292,3 +292,11 @@ Thumbs.db
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,serverless,visualstudiocode,node
+
+### Claude Code ###
+# Local Claude Code settings, state and generated files
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.claude.json
+.mcp.json

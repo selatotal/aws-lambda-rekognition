@@ -8,6 +8,32 @@ With Amazon Rekognition Custom Labels, you can identify the objects and scenes i
 
 Documentation: https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html
 
+## How it works
+
+The service exposes a single Lambda function, `imageAnalyze` ([handler.py](handler.py)), which:
+
+1. Validates that the incoming event carries a `body` with both `bucket` and `image`, returning `400` otherwise.
+2. Calls Rekognition's [`DetectLabels`](https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectLabels.html) against the image referenced in S3 — the image is never uploaded through the function, Rekognition reads it straight from the bucket.
+3. Returns `200` with the detected labels, each including its confidence score and, when available, the bounding boxes of every instance found.
+
+### Project structure
+
+| File | Purpose |
+| --- | --- |
+| [handler.py](handler.py) | Lambda handler with the label detection logic |
+| [serverless.yml](serverless.yml) | Service definition: runtime, IAM permissions and environment |
+| [requirements.txt](requirements.txt) | Python dependencies packaged into the function |
+| [data.json](data.json) | Sample event payload used for local and remote invocations |
+| [package.json](package.json) | Serverless Framework plugins used at deploy time |
+
+### Configuration
+
+| Environment variable | Default | Description |
+| --- | --- | --- |
+| `MAX_LABELS` | `10` | Maximum number of labels Rekognition returns per image |
+
+The function's IAM role is declared in [serverless.yml](serverless.yml) and grants the minimum needed to run: `s3:Get*` and `s3:ListBucket` to read the source image, plus `rekognition:DetectLabels`.
+
 ## Requirements
 
 In order to use, you need to install Serverless Framework, as below
@@ -17,10 +43,9 @@ sudo npm install -g serverless
 
 You need to have an AWS account and correcty set the credentials, as showed in http://slss.io/aws-creds-setup
 
-After checkout repository, you should install serverless-python-requirements plugin and serverless-ignore, as below:
+After checking out the repository, install the Serverless Framework plugins (`serverless-python-requirements` and `serverless-ignore`). They are already declared in [package.json](package.json), so the pinned versions are installed with:
 ```
-serverless plugin install -n serverless-python-requirements
-npm install --save-dev serverless-ignore
+npm install
 ```
 
 In order to execute locally, you need to install python dependencies, as below:
@@ -306,3 +331,7 @@ In order to undeploy the example and its resources, you need to run the followin
 ```
 serverless remove
 ```
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for the full text.
