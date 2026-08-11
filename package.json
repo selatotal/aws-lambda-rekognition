@@ -1,10 +1,17 @@
 {
   "name": "aws-lambda-rekognition",
-  "description": "",
+  "description": "Serverless AWS Lambda function that detects labels in S3-hosted images using Amazon Rekognition",
   "version": "0.1.0",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "serverless-ignore": "^0.1.6",
-    "serverless-python-requirements": "^5.1.1"
+    "serverless-ignore": "^0.2.1",
+    "serverless-python-requirements": "^6.1.2"
+  },
+  "overrides": {
+    "shell-quote": "^1.10.0",
+    "minimatch": "^3.1.5",
+    "brace-expansion": "^1.1.18",
+    "ansi-regex": "^5.0.1"
   }
 }
